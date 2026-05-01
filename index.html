@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartTravel UK – Find the Real Cheapest Trip</title>
+
     <style>
         body {
             margin: 0;
@@ -12,11 +13,36 @@
             color: #333;
         }
 
+        /* Header */
         header {
             background: linear-gradient(135deg, #4a90e2, #0078ff);
             padding: 60px 20px;
             text-align: center;
             color: white;
+            position: relative;
+        }
+
+        /* Language Switch */
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .lang-btn {
+            background: white;
+            color: #0078ff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            border: none;
+        }
+
+        /* Logo */
+        .logo {
+            width: 90px;
+            margin-bottom: 15px;
         }
 
         header h1 {
@@ -45,6 +71,7 @@
             background: #e6f0ff;
         }
 
+        /* Sections */
         .section {
             padding: 50px 20px;
             max-width: 900px;
@@ -75,56 +102,103 @@
             color: #0078ff;
         }
 
+        /* Demo Section */
+        .demo-img {
+            width: 100%;
+            max-width: 350px;
+            display: block;
+            margin: 20px auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
         footer {
             text-align: center;
             padding: 30px;
             background: #eef3f8;
             margin-top: 40px;
         }
+
+        /* Language visibility */
+        .en { display: none; }
+        .lang-en .en { display: block; }
+        .lang-en .zh { display: none; }
     </style>
 </head>
 
-<body>
+<body class="lang-zh">
 
 <header>
-    <h1>SmartTravel UK</h1>
-    <p>一次搜尋，比較 5 大旅遊平台，仲會自動套用最抵優惠碼。</p>
-    <p>Find the real cheapest trip — with automatic promo code savings.</p>
+    <!-- Language Switch -->
+    <div class="lang-switch">
+        <button class="lang-btn" onclick="switchLang()">EN / 中文</button>
+    </div>
+
+    <!-- Logo -->
+    <img class="logo" src="data:image/svg+xml;utf8,
+    <svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'>
+        <circle cx='100' cy='100' r='90' fill='%23ffffff22'/>
+        <path d='M40 110 L160 110 L150 130 L50 130 Z' fill='white'/>
+        <path d='M100 40 L120 110 L80 110 Z' fill='white'/>
+        <text x='100' y='165' font-size='40' text-anchor='middle' fill='white'>%</text>
+    </svg>" />
+
+    <h1 class="zh">SmartTravel UK</h1>
+    <h1 class="en">SmartTravel UK</h1>
+
+    <p class="zh">一次搜尋，比較 5 大旅遊平台，仲會自動套用最抵優惠碼。</p>
+    <p class="en">Search once, compare 5 major travel sites, and auto-apply the best promo codes.</p>
+
     <a class="btn" href="#waitlist">加入候補名單 / Join Waitlist</a>
 </header>
 
 <section class="section">
-    <h2>SmartTravel 有咩特別？ / Why SmartTravel</h2>
+    <h2 class="zh">SmartTravel 有咩特別？</h2>
+    <h2 class="en">Why SmartTravel</h2>
 
     <div class="features">
         <div class="card">
-            <h3>🔍 多平台比價</h3>
-            <p>一次搜尋，即時比較 Booking、Skyscanner、Tripadvisor、Airbnb、Jet2holidays。</p>
+            <h3>🔍 Compare Platforms</h3>
+            <p class="zh">一次搜尋，即時比較 Booking、Skyscanner、Tripadvisor、Airbnb、Jet2holidays。</p>
+            <p class="en">Compare Booking, Skyscanner, Tripadvisor, Airbnb, Jet2holidays instantly.</p>
         </div>
 
         <div class="card">
-            <h3>💸 自動套用優惠碼</h3>
-            <p>SmartTravel 會自動幫你搵出並套用最啱用嘅 Promotion Code。</p>
+            <h3>💸 Auto Promo Codes</h3>
+            <p class="zh">自動搵出並套用最啱用嘅優惠碼。</p>
+            <p class="en">Automatically find and apply the best promo codes.</p>
         </div>
 
         <div class="card">
-            <h3>🧮 真正最終價錢</h3>
-            <p>顯示已包含稅項、費用、清潔費、行李費後嘅預估總價。</p>
+            <h3>🧮 True Final Price</h3>
+            <p class="zh">顯示稅項、費用、清潔費、行李費後嘅真正總價。</p>
+            <p class="en">Shows the real total including taxes, fees, cleaning, baggage.</p>
         </div>
 
         <div class="card">
-            <h3>✔ 原平台完成預訂</h3>
-            <p>你仍然喺 Booking / Skyscanner 完成訂單，SmartTravel 只係幫你慳錢。</p>
+            <h3>✔ Book on Original Site</h3>
+            <p class="zh">你仍然喺原平台完成訂單，SmartTravel 只係幫你慳錢。</p>
+            <p class="en">You still book on the original site — SmartTravel just saves you money.</p>
         </div>
     </div>
 </section>
 
-<section class="section" id="waitlist">
-    <h2>加入候補名單 / Join the Waitlist</h2>
-    <p style="text-align:center;">成為第一批試用 SmartTravel 嘅用戶。</p>
-    <p style="text-align:center;">Be the first to try SmartTravel.</p>
+<section class="section">
+    <h2 class="zh">App Demo（預覽）</h2>
+    <h2 class="en">App Demo Preview</h2>
 
-    <!-- Replace this with your Google Form link -->
+    <!-- Replace with your real screenshots -->
+    <img class="demo-img" src="https://via.placeholder.com/350x700?text=App+Demo+1" />
+    <img class="demo-img" src="https://via.placeholder.com/350x700?text=App+Demo+2" />
+</section>
+
+<section class="section" id="waitlist">
+    <h2 class="zh">加入候補名單</h2>
+    <h2 class="en">Join the Waitlist</h2>
+
+    <p class="zh" style="text-align:center;">成為第一批試用 SmartTravel 嘅用戶。</p>
+    <p class="en" style="text-align:center;">Be the first to try SmartTravel.</p>
+
     <div style="text-align:center; margin-top:20px;">
         <a class="btn" href="#" onclick="alert('請替換成你的 Google Form 連結');">
             填寫 Email / Enter Email
@@ -135,6 +209,12 @@
 <footer>
     © 2026 SmartTravel UK — All Rights Reserved
 </footer>
+
+<script>
+function switchLang() {
+    document.body.classList.toggle("lang-en");
+}
+</script>
 
 </body>
 </html>
