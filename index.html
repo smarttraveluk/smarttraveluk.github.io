@@ -3,27 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartTravel UK – Find the Real Cheapest Trip</title>
 
-    <!-- 🔥 把 SEO Meta Tags 放喺呢度 -->
+    <!-- 🔥 SEO Meta Tags -->
     <meta name="description" content="SmartTravel UK – Compare Booking, Skyscanner, Tripadvisor, Airbnb, Jet2holidays. Auto apply promo codes and see the real final price.">
-    <meta name="keywords" content="travel deals, promo code, booking discount, cheapest flights, hotel deals">
+    <meta name="keywords" content="travel deals, promo code, booking discount, cheapest flights, hotel deals, UK travel app">
     <meta name="author" content="SmartTravel UK">
     <meta name="robots" content="index, follow">
 
-    <!-- OG Image / Social Sharing -->
+    <!-- 🔥 Open Graph（Facebook / IG 分享圖） -->
     <meta property="og:title" content="SmartTravel UK – Find the Real Cheapest Trip">
     <meta property="og:description" content="Search once, compare 5 major travel sites, auto apply promo codes, and see the real final price.">
     <meta property="og:image" content="https://smarttraveluk.github.io/og-image.png">
     <meta property="og:url" content="https://smarttraveluk.github.io/">
     <meta property="og:type" content="website">
 
-    <title>SmartTravel UK – Find the Real Cheapest Trip</title>
-
-    <style>
-        /* 你的 CSS */
-    </style>
-</head>
-
+    <!-- 🔥 Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SmartTravel UK – Find the Real Cheapest Trip">
+    <meta name="twitter:description" content="Compare Booking, Skyscanner, Tripadvisor, Airbnb, Jet2holidays. Auto apply promo codes.">
+    <meta name="twitter:image" content="https://smarttraveluk.github.io/og-image.png">
 
     <style>
         body {
@@ -33,13 +32,13 @@
             color: #333;
         }
 
-        /* Header */
         header {
-            background: linear-gradient(135deg, #4a90e2, #0078ff);
-            padding: 60px 20px;
+            background: linear-gradient(135deg, #4a90e2, #ff4b8b);
+            padding: 60px 20px 40px;
             text-align: center;
             color: white;
             position: relative;
+            overflow: hidden;
         }
 
         /* Language Switch */
@@ -62,23 +61,24 @@
         /* Logo */
         .logo {
             width: 90px;
-            margin-bottom: 15px;
-        }
-
-        header h1 {
-            font-size: 36px;
             margin-bottom: 10px;
         }
 
+        header h1 {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
         header p {
-            font-size: 18px;
-            opacity: 0.9;
+            font-size: 17px;
+            opacity: 0.95;
+            margin: 4px 0;
         }
 
         .btn {
             display: inline-block;
-            margin-top: 20px;
-            padding: 14px 28px;
+            margin-top: 18px;
+            padding: 12px 26px;
             background: white;
             color: #0078ff;
             border-radius: 8px;
@@ -91,17 +91,16 @@
             background: #e6f0ff;
         }
 
-        /* Sections */
         .section {
-            padding: 50px 20px;
-            max-width: 900px;
+            padding: 45px 20px;
+            max-width: 1000px;
             margin: auto;
         }
 
         .section h2 {
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 28px;
+            margin-bottom: 26px;
+            font-size: 26px;
         }
 
         .features {
@@ -112,7 +111,7 @@
 
         .card {
             background: white;
-            padding: 25px;
+            padding: 22px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
@@ -123,20 +122,35 @@
         }
 
         /* Demo Section */
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            align-items: start;
+        }
+
         .demo-img {
             width: 100%;
-            max-width: 350px;
+            max-width: 320px;
             display: block;
-            margin: 20px auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin: 0 auto;
+            border-radius: 18px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+
+        .demo-caption {
+            text-align: center;
+            margin-top: 8px;
+            font-size: 14px;
+            color: #666;
         }
 
         footer {
             text-align: center;
-            padding: 30px;
+            padding: 26px;
             background: #eef3f8;
-            margin-top: 40px;
+            margin-top: 30px;
+            font-size: 13px;
         }
 
         /* Language visibility */
@@ -151,90 +165,3 @@
 <header>
     <!-- Language Switch -->
     <div class="lang-switch">
-        <button class="lang-btn" onclick="switchLang()">EN / 中文</button>
-    </div>
-
-    <!-- Logo -->
-    <img class="logo" src="data:image/svg+xml;utf8,
-    <svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'>
-        <circle cx='100' cy='100' r='90' fill='%23ffffff22'/>
-        <path d='M40 110 L160 110 L150 130 L50 130 Z' fill='white'/>
-        <path d='M100 40 L120 110 L80 110 Z' fill='white'/>
-        <text x='100' y='165' font-size='40' text-anchor='middle' fill='white'>%</text>
-    </svg>" />
-
-    <h1 class="zh">SmartTravel UK</h1>
-    <h1 class="en">SmartTravel UK</h1>
-
-    <p class="zh">一次搜尋，比較 5 大旅遊平台，仲會自動套用最抵優惠碼。</p>
-    <p class="en">Search once, compare 5 major travel sites, and auto-apply the best promo codes.</p>
-
-    <a class="btn" href="#waitlist">加入候補名單 / Join Waitlist</a>
-</header>
-
-<section class="section">
-    <h2 class="zh">SmartTravel 有咩特別？</h2>
-    <h2 class="en">Why SmartTravel</h2>
-
-    <div class="features">
-        <div class="card">
-            <h3>🔍 Compare Platforms</h3>
-            <p class="zh">一次搜尋，即時比較 Booking、Skyscanner、Tripadvisor、Airbnb、Jet2holidays。</p>
-            <p class="en">Compare Booking, Skyscanner, Tripadvisor, Airbnb, Jet2holidays instantly.</p>
-        </div>
-
-        <div class="card">
-            <h3>💸 Auto Promo Codes</h3>
-            <p class="zh">自動搵出並套用最啱用嘅優惠碼。</p>
-            <p class="en">Automatically find and apply the best promo codes.</p>
-        </div>
-
-        <div class="card">
-            <h3>🧮 True Final Price</h3>
-            <p class="zh">顯示稅項、費用、清潔費、行李費後嘅真正總價。</p>
-            <p class="en">Shows the real total including taxes, fees, cleaning, baggage.</p>
-        </div>
-
-        <div class="card">
-            <h3>✔ Book on Original Site</h3>
-            <p class="zh">你仍然喺原平台完成訂單，SmartTravel 只係幫你慳錢。</p>
-            <p class="en">You still book on the original site — SmartTravel just saves you money.</p>
-        </div>
-    </div>
-</section>
-
-<section class="section">
-    <h2 class="zh">App Demo（預覽）</h2>
-    <h2 class="en">App Demo Preview</h2>
-
-    <!-- Replace with your real screenshots -->
-    <img class="demo-img" src="https://via.placeholder.com/350x700?text=App+Demo+1" />
-    <img class="demo-img" src="https://via.placeholder.com/350x700?text=App+Demo+2" />
-</section>
-
-<section class="section" id="waitlist">
-    <h2 class="zh">加入候補名單</h2>
-    <h2 class="en">Join the Waitlist</h2>
-
-    <p class="zh" style="text-align:center;">成為第一批試用 SmartTravel 嘅用戶。</p>
-    <p class="en" style="text-align:center;">Be the first to try SmartTravel.</p>
-
-    <div style="text-align:center; margin-top:20px;">
-        <a class="btn" href="#" onclick="alert('請替換成你的 Google Form 連結');">
-            填寫 Email / Enter Email
-        </a>
-    </div>
-</section>
-
-<footer>
-    © 2026 SmartTravel UK — All Rights Reserved
-</footer>
-
-<script>
-function switchLang() {
-    document.body.classList.toggle("lang-en");
-}
-</script>
-
-</body>
-</html>
