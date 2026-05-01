@@ -1,265 +1,140 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartTravel UK - Coming Soon</title>
+    <title>SmartTravel UK – Find the Real Cheapest Trip</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 50%, #0d1b2a 100%);
-            min-height: 100vh;
-            color: #e0e0e0;
-            line-height: 1.6;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f9fc;
+            color: #333;
         }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background: rgba(10, 10, 26, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(100, 200, 255, 0.1);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, #00d4ff, #7b2fff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 2px;
-        }
-
-        .lang-toggle {
-            display: flex;
-            gap: 4px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 4px;
-            border-radius: 8px;
-            border: 1px solid rgba(100, 200, 255, 0.2);
-        }
-
-        .lang-btn {
-            padding: 8px 16px;
-            border: none;
-            background: transparent;
-            color: #888;
-            font-size: 0.9rem;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .lang-btn.active {
-            background: linear-gradient(135deg, #00d4ff, #7b2fff);
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
-        }
-
-        .lang-btn:hover:not(.active) {
-            color: #00d4ff;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 60px 40px;
-        }
-
-        .hero {
+        header {
+            background: linear-gradient(135deg, #4a90e2, #0078ff);
+            padding: 60px 20px;
             text-align: center;
-            margin-bottom: 60px;
+            color: white;
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(90deg, #00d4ff, #7b2fff, #ff6b6b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-            letter-spacing: 4px;
+        header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            color: #a0a0c0;
+        header p {
+            font-size: 18px;
+            opacity: 0.9;
         }
 
-        .strategies {
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 28px;
+            background: white;
+            color: #0078ff;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background: #e6f0ff;
+        }
+
+        .section {
+            padding: 50px 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .features {
             display: grid;
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
         }
 
-        .strategy-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(100, 200, 255, 0.15);
-            border-radius: 16px;
-            padding: 28px 32px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
-        .strategy-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, #00d4ff, #7b2fff);
+        .card h3 {
+            margin-top: 0;
+            color: #0078ff;
         }
 
-        .strategy-card:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(100, 200, 255, 0.3);
-            transform: translateX(8px);
-        }
-
-        .strategy-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #00d4ff;
-            margin-bottom: 8px;
-        }
-
-        .strategy-subtitle {
-            font-size: 0.95rem;
-            color: #7b2fff;
-            margin-bottom: 12px;
-            font-weight: 500;
-        }
-
-        .strategy-desc {
-            color: #b0b0c0;
-            font-size: 1rem;
-        }
-
-        [data-lang="en"] {
-            display: none;
-        }
-
-        body.en [data-lang="zh"] {
-            display: none;
-        }
-
-        body.en [data-lang="en"] {
-            display: block;
-        }
-
-        .strategy-title[data-lang="en"],
-        .strategy-subtitle[data-lang="en"],
-        .strategy-desc[data-lang="en"] {
-            display: none;
-        }
-
-        body.en .strategy-title[data-lang="en"],
-        body.en .strategy-subtitle[data-lang="en"],
-        body.en .strategy-desc[data-lang="en"] {
-            display: block;
-        }
-
-        body.en .strategy-title[data-lang="zh"],
-        body.en .strategy-subtitle[data-lang="zh"],
-        body.en .strategy-desc[data-lang="zh"] {
-            display: none;
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #eef3f8;
+            margin-top: 40px;
         }
     </style>
 </head>
+
 <body>
-    <header class="header">
-        <div class="logo">SMARTTRAVEL UK</div>
-        <div class="lang-toggle">
-            <button class="lang-btn active" id="btn-zh">中文</button>
-            <button class="lang-btn" id="btn-en">EN</button>
+
+<header>
+    <h1>SmartTravel UK</h1>
+    <p>一次搜尋，比較 5 大旅遊平台，仲會自動套用最抵優惠碼。</p>
+    <p>Find the real cheapest trip — with automatic promo code savings.</p>
+    <a class="btn" href="#waitlist">加入候補名單 / Join Waitlist</a>
+</header>
+
+<section class="section">
+    <h2>SmartTravel 有咩特別？ / Why SmartTravel</h2>
+
+    <div class="features">
+        <div class="card">
+            <h3>🔍 多平台比價</h3>
+            <p>一次搜尋，即時比較 Booking、Skyscanner、Tripadvisor、Airbnb、Jet2holidays。</p>
         </div>
-    </header>
 
-    <div class="container">
-        <div class="hero">
-            <h1 data-lang="zh">智能預測平台</h1>
-            <h1 data-lang="en">AI-Driven Prediction Platform</h1>
-            <p data-lang="zh">結合金融分析邏輯與英國鐵路數據的智能預測平台</p>
-            <p data-lang="en">Combining financial analysis logic with UK rail data intelligence</p>
+        <div class="card">
+            <h3>💸 自動套用優惠碼</h3>
+            <p>SmartTravel 會自動幫你搵出並套用最啱用嘅 Promotion Code。</p>
         </div>
 
-        <div class="strategies">
-            <div class="strategy-card">
-                <h3 class="strategy-title" data-lang="zh">地緣政治與板塊聯動</h3>
-                <h3 class="strategy-title" data-lang="en">The Geopolitical Overlay</h3>
-                <p class="strategy-subtitle" data-lang="zh">The Geopolitical Overlay</p>
-                <p class="strategy-subtitle" data-lang="en">地緣政治與板塊聯動</p>
-                <p class="strategy-desc" data-lang="zh">分析營運商（TOCs）之間的關聯性與外部事件溢出效應，捕捉跨線路、跨區域的價格傳導機會。</p>
-                <p class="strategy-desc" data-lang="en">Analyzing correlations between Train Operating Companies (TOCs) and external event spillover effects to capture cross-route and cross-regional price transmission opportunities.</p>
-            </div>
+        <div class="card">
+            <h3>🧮 真正最終價錢</h3>
+            <p>顯示已包含稅項、費用、清潔費、行李費後嘅預估總價。</p>
+        </div>
 
-            <div class="strategy-card">
-                <h3 class="strategy-title" data-lang="zh">軋空潛力</h3>
-                <h3 class="strategy-title" data-lang="en">Short Squeeze</h3>
-                <p class="strategy-subtitle" data-lang="zh">Short Squeeze Potential</p>
-                <p class="strategy-subtitle" data-lang="en">軋空潛力</p>
-                <p class="strategy-desc" data-lang="zh">監控 Advance Ticket 剩餘量，當庫存降至臨界點時捕捉票價跳升前的最佳買入窗口。</p>
-                <p class="strategy-desc" data-lang="en">Monitoring Advance Ticket inventory levels to identify optimal buying windows before price spikes when stock drops to critical thresholds.</p>
-            </div>
-
-            <div class="strategy-card">
-                <h3 class="strategy-title" data-lang="zh">IV 偏斜與波動</h3>
-                <h3 class="strategy-title" data-lang="en">Volatility Dynamics</h3>
-                <p class="strategy-subtitle" data-lang="zh">IV Skew & Volatility</p>
-                <p class="strategy-subtitle" data-lang="en">IV 偏斜與波動</p>
-                <p class="strategy-desc" data-lang="zh">捕捉因節日、賽事或突發事件導致的非理性票價波動，識別恐慌與貪婪的市場情緒轉折點。</p>
-                <p class="strategy-desc" data-lang="en">Capturing irrational fare fluctuations caused by holidays, events, or突发情况, identifying market sentiment inflection points of fear and greed.</p>
-            </div>
-
-            <div class="strategy-card">
-                <h3 class="strategy-title" data-lang="zh">現金跑道</h3>
-                <h3 class="strategy-title" data-lang="en">Cash Runway</h3>
-                <p class="strategy-subtitle" data-lang="zh">Cost & Risk Management</p>
-                <p class="strategy-subtitle" data-lang="en">現金跑道管理</p>
-                <p class="strategy-desc" data-lang="zh">嚴格控管 RDM API 呼叫成本與營運風險，確保平台在預算範圍內可持續運行。</p>
-                <p class="strategy-desc" data-lang="en">Strictly controlling RDM API call costs and operational risks to ensure sustainable platform operation within budget constraints.</p>
-            </div>
-
-            <div class="strategy-card">
-                <h3 class="strategy-title" data-lang="zh">RSI 指標背離</h3>
-                <h3 class="strategy-title" data-lang="en">RSI Divergence</h3>
-                <p class="strategy-subtitle" data-lang="zh">Momentum Reversal Signal</p>
-                <p class="strategy-subtitle" data-lang="en">RSI 指標背離</p>
-                <p class="strategy-desc" data-lang="zh">利用相對強弱指標判斷票價超買/超賣狀態，精準捕捉反轉黃金時機。</p>
-                <p class="strategy-desc" data-lang="en">Using Relative Strength Index to identify overbought/oversold conditions, precisely capturing golden reversal opportunities.</p>
-            </div>
+        <div class="card">
+            <h3>✔ 原平台完成預訂</h3>
+            <p>你仍然喺 Booking / Skyscanner 完成訂單，SmartTravel 只係幫你慳錢。</p>
         </div>
     </div>
+</section>
 
-    <script>
-        const btnZh = document.getElementById('btn-zh');
-        const btnEn = document.getElementById('btn-en');
+<section class="section" id="waitlist">
+    <h2>加入候補名單 / Join the Waitlist</h2>
+    <p style="text-align:center;">成為第一批試用 SmartTravel 嘅用戶。</p>
+    <p style="text-align:center;">Be the first to try SmartTravel.</p>
 
-        btnZh.addEventListener('click', () => {
-            document.body.classList.remove('en');
-            btnZh.classList.add('active');
-            btnEn.classList.remove('active');
-            document.documentElement.lang = 'zh-CN';
-        });
+    <!-- Replace this with your Google Form link -->
+    <div style="text-align:center; margin-top:20px;">
+        <a class="btn" href="#" onclick="alert('請替換成你的 Google Form 連結');">
+            填寫 Email / Enter Email
+        </a>
+    </div>
+</section>
 
-        btnEn.addEventListener('click', () => {
-            document.body.classList.add('en');
-            btnEn.classList.add('active');
-            btnZh.classList.remove('active');
-            document.documentElement.lang = 'en';
-        });
-    </script>
+<footer>
+    © 2026 SmartTravel UK — All Rights Reserved
+</footer>
+
 </body>
 </html>
