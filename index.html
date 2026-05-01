@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="zh-HK">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartTravel UK – Find the Real Cheapest Trip</title>
 
-    <!-- 🔥 SEO Meta Tags -->
+    <!-- SEO -->
     <meta name="description" content="SmartTravel UK – Compare Booking, Skyscanner, Tripadvisor, Airbnb, Jet2holidays. Auto apply promo codes and see the real final price.">
     <meta name="keywords" content="travel deals, promo code, booking discount, cheapest flights, hotel deals, UK travel app">
     <meta name="author" content="SmartTravel UK">
     <meta name="robots" content="index, follow">
 
-    <!-- 🔥 Open Graph（Facebook / IG 分享圖） -->
+    <!-- OG -->
     <meta property="og:title" content="SmartTravel UK – Find the Real Cheapest Trip">
     <meta property="og:description" content="Search once, compare 5 major travel sites, auto apply promo codes, and see the real final price.">
     <meta property="og:image" content="https://smarttraveluk.github.io/og-image.png">
     <meta property="og:url" content="https://smarttraveluk.github.io/">
     <meta property="og:type" content="website">
 
-    <!-- 🔥 Twitter Card -->
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="SmartTravel UK – Find the Real Cheapest Trip">
     <meta name="twitter:description" content="Compare Booking, Skyscanner, Tripadvisor, Airbnb, Jet2holidays. Auto apply promo codes.">
@@ -38,10 +38,8 @@
             text-align: center;
             color: white;
             position: relative;
-            overflow: hidden;
         }
 
-        /* Language Switch */
         .lang-switch {
             position: absolute;
             top: 20px;
@@ -58,7 +56,6 @@
             border: none;
         }
 
-        /* Logo */
         .logo {
             width: 90px;
             margin-bottom: 10px;
@@ -121,7 +118,6 @@
             color: #0078ff;
         }
 
-        /* Demo Section */
         .demo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -153,15 +149,279 @@
             font-size: 13px;
         }
 
-        /* Language visibility */
-        .en { display: none; }
-        .lang-en .en { display: block; }
-        .lang-en .zh { display: none; }
+        /* 語言顯示邏輯 */
+        .zh { display: none; }
+        .en { display: block; }
+        body.lang-zh .zh { display: block; }
+        body.lang-zh .en { display: none; }
+
+        /* 價格拆解樣式 */
+        .price-breakdown {
+            background: #fff3f8;
+            border-left: 4px solid #ff4b8b;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        .real-price {
+            font-weight: bold;
+            color: #ff4b8b;
+            font-size: 1.2em;
+        }
+
+        .calc-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            max-width: 420px;
+            margin: 0 auto;
+        }
+        .calc-box label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.9em;
+        }
+        .calc-box input,
+        .calc-box select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        .calc-btn {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            background: #0078ff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .calc-btn:hover {
+            background: #005fcc;
+        }
     </style>
 </head>
 
-<body class="lang-zh">
-
+<body>
 <header>
-    <!-- Language Switch -->
     <div class="lang-switch">
+        <button class="lang-btn" id="langToggle">中文 / EN</button>
+    </div>
+
+    <!-- 彩色 Logo -->
+    <img class="logo" src="data:image/svg+xml;utf8,
+    <svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'>
+        <defs>
+            <linearGradient id='bgGrad' x1='0%' y1='0%' x2='100%' y2='100%'>
+                <stop offset='0%' stop-color='%234a90e2'/>
+                <stop offset='100%' stop-color='%23ff4b8b'/>
+            </linearGradient>
+        </defs>
+        <rect x='20' y='20' width='160' height='160' rx='40' fill='url(%23bgGrad)'/>
+        <path d='M60 115 L150 95 L155 110 L95 125 L80 150 L72 148 L78 125 L50 120 Z'
+              fill='white' />
+        <circle cx='135' cy='70' r='22' fill='white'/>
+        <text x='135' y='77' font-size='20' text-anchor='middle' fill='%23ff4b8b' font-family='Arial'>%</text>
+    </svg>" alt="SmartTravel Logo" />
+
+    <h1 class="en">SmartTravel UK</h1>
+    <h1 class="zh">SmartTravel 英國</h1>
+
+    <p class="en">Search once, compare 5 major travel sites, and auto-apply the best promo codes.</p>
+    <p class="zh">一次搜尋，比較 5 大旅遊平台，並自動套用最抵優惠碼。</p>
+
+    <p class="en">See the true final price and save more on every trip.</p>
+    <p class="zh">顯示真正最終價錢，幫你每次旅行慳多啲。</p>
+
+    <a class="btn" href="#waitlist">Join Waitlist / 加入候補名單</a>
+</header>
+
+<section class="section">
+    <h2 class="en">Why SmartTravel</h2>
+    <h2 class="zh">SmartTravel 有咩特別？</h2>
+
+    <div class="features">
+        <div class="card">
+            <h3>🔍 Compare Platforms</h3>
+            <p class="en">Search once and instantly compare Booking, Skyscanner, Tripadvisor, Airbnb, and Jet2holidays.</p>
+            <p class="zh">一次搜尋，即時比較 Booking、Skyscanner、Tripadvisor、Airbnb、Jet2holidays。</p>
+        </div>
+
+        <div class="card">
+            <h3>💸 Auto Promo Codes</h3>
+            <p class="en">Automatically finds and applies the best promo codes—no more copy-paste and guessing.</p>
+            <p class="zh">自動搵出並套用最啱用嘅優惠碼，唔使再自己慢慢試。</p>
+        </div>
+
+        <div class="card">
+            <h3>🧮 True Final Price</h3>
+            <p class="en">Shows the real total including taxes, platform fees, cleaning fees, and baggage.</p>
+            <p class="zh">顯示已包含稅項、平台費用、清潔費、行李費後嘅真正總價。</p>
+        </div>
+
+        <div class="card">
+            <h3>✔ Book on Original Site</h3>
+            <p class="en">You always complete your booking on the original site—SmartTravel just finds the best deal.</p>
+            <p class="zh">你仍然喺原平台完成訂單，SmartTravel 只係幫你搵最抵嗰個。</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="en">Real Price Calculator (Demo)</h2>
+    <h2 class="zh">真正價錢計算器（示範）</h2>
+
+    <div class="calc-box">
+        <label class="en">Base price (shown on site)</label>
+        <label class="zh">網站標示價錢（未計隱藏費用）</label>
+        <input type="number" id="basePrice" placeholder="e.g. 100">
+
+        <label class="en">Platform</label>
+        <label class="zh">平台</label>
+        <select id="platform">
+            <option value="booking">Booking.com</option>
+            <option value="skyscanner">Skyscanner</option>
+            <option value="airbnb">Airbnb</option>
+            <option value="jet2holidays">Jet2holidays</option>
+        </select>
+
+        <button class="calc-btn" id="calcBtn">
+            <span class="en">Calculate Real Price</span>
+            <span class="zh">計算真正價錢</span>
+        </button>
+
+        <div id="calcResult" style="margin-top:12px;"></div>
+    </div>
+</section>
+
+<section class="section" id="waitlist">
+    <h2 class="en">Join the Waitlist</h2>
+    <h2 class="zh">加入候補名單</h2>
+
+    <p class="en" style="text-align:center;">Be among the first to try SmartTravel and experience automatic promo-code powered comparison.</p>
+    <p class="zh" style="text-align:center;">成為第一批試用 SmartTravel 嘅用戶，優先體驗自動優惠碼比價。</p>
+
+    <div style="text-align:center; margin-top:20px;">
+        <a class="btn" href="#" onclick="alert('請替換成你的 Google Form / Typeform 連結');">
+            Enter Email / 填寫 Email
+        </a>
+    </div>
+</section>
+
+<footer>
+    © 2026 SmartTravel UK — All Rights Reserved
+</footer>
+
+<script>
+/** 語言偵測 + 切換 **/
+(function initLang() {
+    const saved = localStorage.getItem('smarttravel_lang');
+    if (saved === 'zh' || saved === 'en') {
+        document.body.classList.toggle('lang-zh', saved === 'zh');
+        document.body.classList.toggle('lang-en', saved === 'en');
+    } else {
+        const userLang = navigator.language.toLowerCase();
+        const useZh = userLang.includes('zh');
+        document.body.classList.toggle('lang-zh', useZh);
+        document.body.classList.toggle('lang-en', !useZh);
+    }
+    updateLangButton();
+})();
+
+function updateLangButton() {
+    const btn = document.getElementById('langToggle');
+    if (document.body.classList.contains('lang-zh')) {
+        btn.textContent = 'EN';
+    } else {
+        btn.textContent = '中文';
+    }
+}
+
+document.getElementById('langToggle').addEventListener('click', () => {
+    const isZh = document.body.classList.contains('lang-zh');
+    document.body.classList.toggle('lang-zh', !isZh);
+    document.body.classList.toggle('lang-en', isZh);
+    localStorage.setItem('smarttravel_lang', isZh ? 'en' : 'zh');
+    updateLangButton();
+});
+
+/** 價格引擎 **/
+const travelPlatforms = {
+    booking: {
+        name: "Booking.com",
+        defaultPromo: 0.90,
+        taxRate: 0.05,
+        hiddenFees: 0
+    },
+    skyscanner: {
+        name: "Skyscanner",
+        defaultPromo: 1.0,
+        taxRate: 0,
+        hiddenFees: 15
+    },
+    airbnb: {
+        name: "Airbnb",
+        defaultPromo: 1.0,
+        taxRate: 0.12,
+        hiddenFees: 45
+    },
+    jet2holidays: {
+        name: "Jet2holidays",
+        defaultPromo: -20,
+        taxRate: 0,
+        hiddenFees: 0
+    }
+};
+
+function calculateRealPrice(basePrice, platform) {
+    const config = travelPlatforms[platform];
+    let finalPrice = basePrice;
+
+    if (config.defaultPromo < 1 && config.defaultPromo > 0) {
+        finalPrice *= config.defaultPromo;
+    } else if (config.defaultPromo < 0) {
+        finalPrice += config.defaultPromo;
+    }
+
+    finalPrice += (basePrice * config.taxRate);
+    finalPrice += config.hiddenFees;
+
+    return {
+        platformName: config.name,
+        original: basePrice,
+        discount: basePrice - (config.defaultPromo > 0 && config.defaultPromo < 1 ? basePrice * config.defaultPromo : basePrice),
+        fees: (basePrice * config.taxRate) + config.hiddenFees,
+        total: finalPrice.toFixed(2)
+    };
+}
+
+document.getElementById('calcBtn').addEventListener('click', () => {
+    const base = parseFloat(document.getElementById('basePrice').value || '0');
+    const platform = document.getElementById('platform').value;
+    if (!base || base <= 0) {
+        alert('請輸入有效價錢 / Please enter a valid price');
+        return;
+    }
+    const r = calculateRealPrice(base, platform);
+    const isZh = document.body.classList.contains('lang-zh');
+
+    document.getElementById('calcResult').innerHTML = `
+        <div class="price-breakdown">
+            <div>${isZh ? '平台' : 'Platform'}：${r.platformName}</div>
+            <div>${isZh ? '原價' : 'Original'}：£${r.original.toFixed(2)}</div>
+            <div>${isZh ? '折扣 / 優惠碼效果' : 'Discount / Promo effect'}：-£${r.discount.toFixed(2)}</div>
+            <div>${isZh ? '稅項 + 隱藏費用' : 'Taxes + hidden fees'}：£${r.fees.toFixed(2)}</div>
+            <div class="real-price">
+                ${isZh ? '預估真正要俾嘅價錢' : 'Estimated real price'}：£${r.total}
+            </div>
+        </div>
+    `;
+});
+</script>
+
+</body>
+</html>
